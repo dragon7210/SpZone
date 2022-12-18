@@ -1,7 +1,10 @@
 import { useState } from "react";
 
-const Mint = ({NFTImage}) => {
+const Mint = ({ NFTImage }) => {
   const [mintAmount, setMintAmount] = useState(0);
+  const mint = () => {
+    console.log(mintAmount);
+  };
   return (
     <div className="mt-[15px] w-[30%]">
       <div className="flex justify-center mt-[15px]">
@@ -27,7 +30,10 @@ const Mint = ({NFTImage}) => {
         </button>
       </div>
       <div className="flex justify-center mt-[15px]">
-        <button className="bg-[yellow] w-[100%] py-[10px] rounded-[15px]  ">
+        <button
+          className="bg-[yellow] w-[100%] py-[10px] rounded-[15px] "
+          onClick={mint}
+        >
           <p className="font-bold ">Mint</p>
         </button>
       </div>
