@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Plus from "assets/img/plus.png";
+import Minus from "assets/img/minus.png";
 
 const Mint = ({ NFTImage }) => {
   const [mintAmount, setMintAmount] = useState(0);
@@ -17,7 +19,7 @@ const Mint = ({ NFTImage }) => {
             setMintAmount(mintAmount > 0 ? mintAmount - 1 : mintAmount);
           }}
         >
-          <p className="font-medium">-</p>
+          <img src={Minus} alt="minus" />
         </button>
         <p className="my-auto mx-[25px] text-[20px]">{mintAmount}</p>
         <button
@@ -26,7 +28,7 @@ const Mint = ({ NFTImage }) => {
             setMintAmount(mintAmount + 1);
           }}
         >
-          <p className="font-medium">+</p>
+          <img src={Plus} alt="Plus" />
         </button>
       </div>
       <div className="flex justify-center mt-[15px]">
