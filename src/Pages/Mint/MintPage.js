@@ -6,13 +6,13 @@ const MintPage = () => {
   return (
     <div className="bg-[wheat] pt-[30px]">
       <div className="flex justify-between px-[5%]">
-        {x.map((index, ele) => (
-          <Mint key={index} NFTImage={NFTImage} />
+        {x.map((ele, index) => (
+          <Mint key={index} NFTImage={NFTImage} number={index} />
         ))}
       </div>
       <div className="flex justify-between px-[5%] mt-[30px]">
-        {x.map((index, ele) => (
-          <Mint key={index} NFTImage={NFTImage} />
+        {x.map((ele, index) => (
+          <Mint key={index} NFTImage={NFTImage} number={index + 3} />
         ))}
       </div>
       <div className="text-center mt-[15px]">

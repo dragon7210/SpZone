@@ -1,12 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { setTotalCount } from "Reducer/totalCount";
+import { useDispatch } from "react-redux";
 import Plus from "assets/img/plus.png";
 import Minus from "assets/img/minus.png";
 
-const Mint = ({ NFTImage }) => {
+let temp = [0, 0, 0, 0, 0, 0];
+
+const Mint = ({ NFTImage, number }) => {
+  const dispatch = useDispatch();
   const [mintAmount, setMintAmount] = useState(0);
   const mint = () => {
-    console.log(mintAmount);
+    temp[number] += mintAmount;
+    setMintAmount(0);
   };
+  function total(arr) {
+    if (!Array.isArray(arr)) return;
+    return arr.reduce((a, v) => a + v);
+  }
+
+  let totalCount = 1818 - total(temp);
+  useEffect(() => {
+    dispatch(setTotalCount(totalCount));
+  }, [dispatch, totalCount]);
+
   return (
     <div className="mt-[15px] w-[30%] border-2 border-[black] border-solid rounded-[30px]  ">
       <div className="flex justify-center">
@@ -40,7 +56,7 @@ const Mint = ({ NFTImage }) => {
         </button>
       </div>
       <div className="flex justify-center mt-[10px]">
-        <p className="font-bold mb-[10px]">10/100 Minted</p>
+        <p className="font-bold mb-[10px]">{temp[number]}/303 Minted</p>
       </div>
     </div>
   );

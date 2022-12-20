@@ -1,5 +1,5 @@
 import Header from "components/Header";
-import MintPage from "components/Pages/Mint/MintPage";
+import MintPage from "Pages/Mint/MintPage";
 import "./App.css";
 
 function App() {
