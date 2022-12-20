@@ -1,9 +1,8 @@
 import Mint from "components/Mint";
-import NFTImage from "assets/img/1.png";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { NFTData } from "constant";
 
-const nftCounts = [999, 400, 200, 99, 75, 45];
 const MintPage = () => {
   const [count, setCount] = useState(1818);
   const temp = useSelector((e) => e.totalCount.value);
@@ -13,12 +12,12 @@ const MintPage = () => {
   return (
     <div className="bg-[wheat] pt-[30px]">
       <div className="px-[5%]">
-        {nftCounts.map((nftCount, index) => (
+        {NFTData.map((ele, index) => (
           <Mint
             key={index}
-            NFTImage={NFTImage}
+            NFTImage={ele.img}
             number={index}
-            NFTCount={nftCount}
+            NFTCount={ele.count}
           />
         ))}
       </div>
