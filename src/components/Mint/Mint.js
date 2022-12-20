@@ -6,6 +6,11 @@ import Minus from "assets/img/minus.png";
 
 let temp = [0, 0, 0, 0, 0, 0];
 
+function total(arr) {
+  if (!Array.isArray(arr)) return;
+  return arr.reduce((a, v) => a + v);
+}
+
 const Mint = ({ NFTImage, number }) => {
   const dispatch = useDispatch();
   const [mintAmount, setMintAmount] = useState(0);
@@ -13,12 +18,9 @@ const Mint = ({ NFTImage, number }) => {
     temp[number] += mintAmount;
     setMintAmount(0);
   };
-  function total(arr) {
-    if (!Array.isArray(arr)) return;
-    return arr.reduce((a, v) => a + v);
-  }
 
   let totalCount = 1818 - total(temp);
+
   useEffect(() => {
     dispatch(setTotalCount(totalCount));
   }, [dispatch, totalCount]);

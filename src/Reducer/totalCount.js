@@ -9,7 +9,6 @@ export const totalCountSlice = createSlice({
   initialState,
   reducers: {
     setTotalCount: (state, action) => {
-      console.log(action.payload);
       return { value: action.payload };
     },
   },

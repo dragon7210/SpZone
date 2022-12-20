@@ -1,8 +1,15 @@
 import Mint from "components/Mint";
 import NFTImage from "assets/img/1.png";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 const x = [1, 2, 3];
 const MintPage = () => {
+  const [count, setCount] = useState(1818);
+  const temp = useSelector((e) => e.totalCount.value);
+  useEffect(() => {
+    setCount(temp);
+  }, [temp]);
   return (
     <div className="bg-[wheat] pt-[30px]">
       <div className="flex justify-between px-[5%]">
@@ -20,7 +27,7 @@ const MintPage = () => {
         <p className="text-[30px]">Number of Tiers : 6</p>
         <p className="text-[30px]">Total Raised: in USD</p>
         <p className="text-[30px]">
-          The amount of NFT left to mint out of 1818
+          The amount of NFT left to mint out of {count}
         </p>
       </div>
     </div>
