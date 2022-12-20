@@ -3,7 +3,7 @@ import NFTImage from "assets/img/1.png";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-const x = [1, 2, 3];
+const nftCounts = [999, 400, 200, 99, 75, 45];
 const MintPage = () => {
   const [count, setCount] = useState(1818);
   const temp = useSelector((e) => e.totalCount.value);
@@ -12,16 +12,17 @@ const MintPage = () => {
   }, [temp]);
   return (
     <div className="bg-[wheat] pt-[30px]">
-      <div className="flex justify-between px-[5%]">
-        {x.map((ele, index) => (
-          <Mint key={index} NFTImage={NFTImage} number={index} />
+      <div className="px-[5%]">
+        {nftCounts.map((nftCount, index) => (
+          <Mint
+            key={index}
+            NFTImage={NFTImage}
+            number={index}
+            NFTCount={nftCount}
+          />
         ))}
       </div>
-      <div className="flex justify-between px-[5%] mt-[30px]">
-        {x.map((ele, index) => (
-          <Mint key={index} NFTImage={NFTImage} number={index + 3} />
-        ))}
-      </div>
+
       <div className="text-center mt-[15px]">
         <p className="text-[30px]">Total NFTS : 1818</p>
         <p className="text-[30px]">Number of Tiers : 6</p>
