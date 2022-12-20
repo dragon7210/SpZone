@@ -44,7 +44,11 @@ const Mint = ({ NFTImage, number, NFTCount }) => {
           <button
             className="bg-[yellow] rounded-full w-[40px] h-[40px]"
             onClick={() => {
-              setMintAmount(mintAmount + 1);
+              setMintAmount(
+                mintAmount + 1 > NFTCount - temp[number]
+                  ? NFTCount - temp[number]
+                  : mintAmount + 1
+              );
             }}
           >
             <img src={Plus} alt="Plus" />
