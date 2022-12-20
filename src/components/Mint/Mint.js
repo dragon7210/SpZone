@@ -11,14 +11,14 @@ function total(arr) {
   return arr.reduce((a, v) => a + v);
 }
 
-const Mint = ({ NFTImage, number, NFTCount }) => {
+const Mint = ({ NFTImage, number, NFTCount, color }) => {
   const dispatch = useDispatch();
   const [mintAmount, setMintAmount] = useState(0);
   const mint = () => {
     temp[number] += mintAmount;
     setMintAmount(0);
   };
-
+  console.log(color);
   let totalCount = 1818 - total(temp);
 
   useEffect(() => {
@@ -26,7 +26,9 @@ const Mint = ({ NFTImage, number, NFTCount }) => {
   }, [dispatch, totalCount]);
 
   return (
-    <div className="mt-[30px] w-[50%] border-2 border-[white] border-solid rounded-[30px] mx-auto flex">
+    <div
+      className={`mt-[30px] w-[500px] border-4 border-[${color}]  border-solid rounded-[30px] mx-auto flex`}
+    >
       <div className="flex justify-center w-[50%]">
         <img src={NFTImage} alt="NFT" className="rounded-[27px]" />
       </div>

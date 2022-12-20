@@ -15,9 +15,10 @@ const MintPage = () => {
         {NFTData.map((ele, index) => (
           <Mint
             key={index}
-            NFTImage={ele.img}
             number={index}
+            NFTImage={ele.img}
             NFTCount={ele.count}
+            color={ele.color}
           />
         ))}
       </div>
