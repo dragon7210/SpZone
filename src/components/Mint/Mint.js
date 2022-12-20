@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { setTotalCount } from "Reducer/totalCount";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import Plus from "assets/img/plus.png";
 import Minus from "assets/img/minus.png";
+import { useEthers } from "@usedapp/core";
 
 let temp = [0, 0, 0, 0, 0, 0];
 
@@ -12,13 +14,18 @@ function total(arr) {
 }
 
 const Mint = ({ NFTImage, number, NFTCount, color }) => {
+  const { account } = useEthers();
   const dispatch = useDispatch();
   const [mintAmount, setMintAmount] = useState(0);
   const mint = () => {
-    temp[number] += mintAmount;
-    setMintAmount(0);
+    if (account) {
+      temp[number] += mintAmount;
+      toast.success("Success Minted");
+      setMintAmount(0);
+    } else {
+      toast.error("Please connect Wallet");
+    }
   };
-  console.log(color);
   let totalCount = 1818 - total(temp);
 
   useEffect(() => {
@@ -58,7 +65,7 @@ const Mint = ({ NFTImage, number, NFTCount, color }) => {
             <img src={Plus} alt="Plus" />
           </button>
         </div>
-        <div className="flex justify-center mt-[30px]">
+        <div className="flex justify-center mt-[20px]">
           <button
             className="bg-[blue] w-[100%] py-[10px] rounded-[15px] "
             onClick={mint}
@@ -66,7 +73,7 @@ const Mint = ({ NFTImage, number, NFTCount, color }) => {
             <p className="font-bold text-[yellow]">Mint</p>
           </button>
         </div>
-        <div className="flex justify-center mt-[30px]">
+        <div className="flex justify-center mt-[20px]">
           <p className="font-bold mb-[10px] text-[white] text-[20px]">
             {temp[number]}/{NFTCount} Minted
           </p>

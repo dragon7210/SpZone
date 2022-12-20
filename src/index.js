@@ -5,6 +5,8 @@ import { store } from "Store/store";
 import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
 import { DAppProvider } from "@usedapp/core";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -17,6 +19,7 @@ root.render(
     <DAppProvider config={config}>
       <Provider store={store}>
         <App />
+        <ToastContainer />
       </Provider>
     </DAppProvider>
   </React.StrictMode>
