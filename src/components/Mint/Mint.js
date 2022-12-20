@@ -26,11 +26,11 @@ const Mint = ({ NFTImage, number, NFTCount }) => {
   }, [dispatch, totalCount]);
 
   return (
-    <div className="mt-[30px] w-[50%] border-2 border-[black] border-solid rounded-[30px] mx-auto flex">
-      <div className="flex justify-center">
-        <img src={NFTImage} alt="NFT" className="w-[400px] rounded-[27px]" />
+    <div className="mt-[30px] w-[50%] border-2 border-[white] border-solid rounded-[30px] mx-auto flex">
+      <div className="flex justify-center w-[50%]">
+        <img src={NFTImage} alt="NFT" className="rounded-[27px]" />
       </div>
-      <div className="p-5 w-[calc(100%_-_400px)] my-auto">
+      <div className="w-[50%] p-5 my-auto">
         <div className="flex justify-center">
           <button
             className="bg-[yellow] rounded-full w-[40px] h-[40px]"
@@ -40,7 +40,9 @@ const Mint = ({ NFTImage, number, NFTCount }) => {
           >
             <img src={Minus} alt="minus" />
           </button>
-          <p className="my-auto mx-[25px] text-[20px]">{mintAmount}</p>
+          <p className="my-auto mx-[25px] text-[20px] text-[white]">
+            {mintAmount}
+          </p>
           <button
             className="bg-[yellow] rounded-full w-[40px] h-[40px]"
             onClick={() => {
@@ -54,16 +56,16 @@ const Mint = ({ NFTImage, number, NFTCount }) => {
             <img src={Plus} alt="Plus" />
           </button>
         </div>
-        <div className="flex justify-center mt-[40px]">
+        <div className="flex justify-center mt-[30px]">
           <button
-            className="bg-[yellow] w-[100%] py-[10px] rounded-[15px] "
+            className="bg-[blue] w-[100%] py-[10px] rounded-[15px] "
             onClick={mint}
           >
-            <p className="font-bold ">Mint</p>
+            <p className="font-bold text-[yellow]">Mint</p>
           </button>
         </div>
-        <div className="flex justify-center mt-[40px]">
-          <p className="font-bold mb-[10px]">
+        <div className="flex justify-center mt-[30px]">
+          <p className="font-bold mb-[10px] text-[white] text-[20px]">
             {temp[number]}/{NFTCount} Minted
           </p>
         </div>
