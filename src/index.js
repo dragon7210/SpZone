@@ -4,13 +4,21 @@ import App from "./App";
 import { store } from "Store/store";
 import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
+import { DAppProvider } from "@usedapp/core";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+const config = {
+  readOnlyChainId: 1337,
+  multicallAddresses: {},
+};
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <DAppProvider config={config}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </DAppProvider>
   </React.StrictMode>
 );
 
