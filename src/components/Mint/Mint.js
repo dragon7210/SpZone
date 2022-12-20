@@ -8,9 +8,9 @@ const Mint = ({ NFTImage }) => {
     console.log(mintAmount);
   };
   return (
-    <div className="mt-[15px] w-[30%]">
-      <div className="flex justify-center mt-[15px]">
-        <img src={NFTImage} alt="NFT" className="w-[100%]" />
+    <div className="mt-[15px] w-[30%] border-2 border-[black] border-solid rounded-[30px]  ">
+      <div className="flex justify-center">
+        <img src={NFTImage} alt="NFT" className="w-[100%] rounded-[27px]" />
       </div>
       <div className="flex justify-center mt-[15px]">
         <button
@@ -40,7 +40,7 @@ const Mint = ({ NFTImage }) => {
         </button>
       </div>
       <div className="flex justify-center mt-[10px]">
-        <p className="font-bold">10/100 Minted</p>
+        <p className="font-bold mb-[10px]">10/100 Minted</p>
       </div>
     </div>
   );
