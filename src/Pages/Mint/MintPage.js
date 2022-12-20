@@ -19,6 +19,7 @@ const MintPage = () => {
             NFTImage={ele.img}
             NFTCount={ele.count}
             color={ele.color}
+            price={ele.price}
           />
         ))}
       </div>

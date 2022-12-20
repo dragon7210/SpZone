@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import Plus from "assets/img/plus.png";
 import Minus from "assets/img/minus.png";
 import { useEthers } from "@usedapp/core";
+import { useAypndSplgeMint } from "hooks";
 
 let temp = [0, 0, 0, 0, 0, 0];
 
@@ -13,12 +14,25 @@ function total(arr) {
   return arr.reduce((a, v) => a + v);
 }
 
-const Mint = ({ NFTImage, number, NFTCount, color }) => {
+const Mint = ({ NFTImage, number, NFTCount, color, price }) => {
   const { account } = useEthers();
   const dispatch = useDispatch();
   const [mintAmount, setMintAmount] = useState(0);
+
   const mint = () => {
     if (account) {
+      if (number === 0) {
+      }
+      if (number === 1) {
+      }
+      if (number === 2) {
+      }
+      if (number === 3) {
+      }
+      if (number === 4) {
+      }
+      if (number === 5) {
+      }
       temp[number] += mintAmount;
       toast.success("Success Minted");
       setMintAmount(0);
@@ -34,7 +48,8 @@ const Mint = ({ NFTImage, number, NFTCount, color }) => {
 
   return (
     <div
-      className={`mt-[30px] w-[500px] border-4 border-[${color}]  border-solid rounded-[30px] mx-auto flex`}
+      className="mt-[30px] w-[600px] border-4 border-solid rounded-[30px] mx-auto flex"
+      style={{ borderColor: color }}
     >
       <div className="flex justify-center w-[50%]">
         <img src={NFTImage} alt="NFT" className="rounded-[27px]" />
@@ -65,7 +80,10 @@ const Mint = ({ NFTImage, number, NFTCount, color }) => {
             <img src={Plus} alt="Plus" />
           </button>
         </div>
-        <div className="flex justify-center mt-[20px]">
+        <div className="text-center mt-[20px]">
+          <p className="font-bold mb-[10px] text-[white] text-[20px]">
+            {price === 0 ? "Free" : "$" + price}
+          </p>
           <button
             className="bg-[blue] w-[100%] py-[10px] rounded-[15px] "
             onClick={mint}
@@ -73,7 +91,7 @@ const Mint = ({ NFTImage, number, NFTCount, color }) => {
             <p className="font-bold text-[yellow]">Mint</p>
           </button>
         </div>
-        <div className="flex justify-center mt-[20px]">
+        <div className="text-center mt-[20px]">
           <p className="font-bold mb-[10px] text-[white] text-[20px]">
             {temp[number]}/{NFTCount} Minted
           </p>
