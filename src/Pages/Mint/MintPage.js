@@ -1,14 +1,10 @@
 import Mint from "components/Mint";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 import { NFTData } from "constant";
+import { useTotalSplooge, useTotalSupply } from "hooks";
 
 const MintPage = () => {
-  const [count, setCount] = useState(1818);
-  const temp = useSelector((e) => e.totalCount.value);
-  useEffect(() => {
-    setCount(temp);
-  }, [temp]);
+  const totalSplooge = useTotalSplooge();
+  const totalSupply = useTotalSupply();
   return (
     <div className="bg-[#111213] pt-[30px]">
       <div className="px-[5%]">
@@ -19,17 +15,19 @@ const MintPage = () => {
             NFTImage={ele.img}
             NFTCount={ele.count}
             color={ele.color}
-            price={ele.price}
           />
         ))}
       </div>
 
       <div className="text-center py-[30px]">
-        <p className="text-[30px] text-[yellow]">Total NFTS : 1818</p>
+        <p className="text-[30px] text-[yellow]">
+          Total NFTS : {totalSplooge ? parseInt(totalSplooge) : 0}
+        </p>
         <p className="text-[30px] text-[yellow]">Number of Tiers : 6</p>
         <p className="text-[30px] text-[yellow]">Total Raised: in USD</p>
         <p className="text-[30px] text-[yellow]">
-          The amount of NFT left to mint out of {count}
+          The amount of NFT left to mint out of&nbsp;
+          {totalSupply ? parseInt(totalSupply) : 0}
         </p>
       </div>
     </div>

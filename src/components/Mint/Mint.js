@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react";
-import { setTotalCount } from "Reducer/totalCount";
-import { useDispatch } from "react-redux";
+import { useState } from "react";
+
 import { toast } from "react-toastify";
 import Plus from "assets/img/plus.png";
 import Minus from "assets/img/minus.png";
 import { useEthers } from "@usedapp/core";
+import { utils } from "ethers";
+import Modal from "react-modal";
+import RingLoader from "react-spinners/RingLoader";
+
 import {
   useAypndSplgeMint,
   useBaseSplgeMint,
+  useConfig,
   useJrSplgeMint,
   useLmblSplgeMint,
   useNwoSplgeMint,
@@ -16,60 +20,128 @@ import {
 
 let temp = [0, 0, 0, 0, 0, 0];
 
-function total(arr) {
-  if (!Array.isArray(arr)) return;
-  return arr.reduce((a, v) => a + v);
+function ToValue(number) {
+  return number / 10 ** 18;
 }
 
-const Mint = ({ NFTImage, number, NFTCount, color, price }) => {
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "50%",
+    overflow: "hidden",
+    background: "transparent",
+    transform: "translate(-50%, -50%)",
+  },
+};
+
+const Mint = ({ NFTImage, number, NFTCount, color }) => {
   const { account } = useEthers();
-  const dispatch = useDispatch();
+  const NFTprice = useConfig();
+  const [isOpen, setIsOpen] = useState(false);
+
   const [mintAmount, setMintAmount] = useState(0);
 
-  const { state: AypndSplgeMintState, send: AypndSplgeMint } =
-    useAypndSplgeMint();
   const { state: BaseSplgeMintState, send: BaseSplgeMint } = useBaseSplgeMint();
   const { state: JrSplgeMintState, send: JrSplgeMint } = useJrSplgeMint();
   const { state: LmblSplgeMintState, send: LmblSplgeMint } = useLmblSplgeMint();
-  const { state: NwoSplgeMintState, send: NwoSplgeMint } = useNwoSplgeMint();
   const { state: YledSplgeMintState, send: YledSplgeMint } = useYledSplgeMint();
+  const { state: AypndSplgeMintState, send: AypndSplgeMint } =
+    useAypndSplgeMint();
+  const { state: NwoSplgeMintState, send: NwoSplgeMint } = useNwoSplgeMint();
 
   const mint = () => {
-    if (account) {
+    if (account && NFTprice) {
       if (number === 0) {
-        BaseSplgeMint(1, mintAmount);
-        if (BaseSplgeMintState.status === "success") {
-          toast.success("Success Minted");
+        if (mintAmount === 0) {
+          toast.warning("Please increase Amount");
+          return;
+        } else {
+          setIsOpen(true);
+          BaseSplgeMint(mintAmount, {
+            value: utils.parseEther(NFTprice[number].toString()),
+          });
+          if (BaseSplgeMintState.status === "Success") {
+            setIsOpen(false);
+            toast.success("Success Minted");
+          }
         }
       }
       if (number === 1) {
-        JrSplgeMint(1, mintAmount);
-        if (JrSplgeMintState.status === "success") {
-          toast.success("Success Minted");
+        if (mintAmount === 0) {
+          toast.warning("Please increase Amount");
+          return;
+        } else {
+          setIsOpen(true);
+          JrSplgeMint(mintAmount, {
+            value: utils.parseEther(NFTprice[number].toString()),
+          });
+          if (JrSplgeMintState.status === "Success") {
+            setIsOpen(false);
+            toast.success("Success Minted");
+          }
         }
       }
       if (number === 2) {
-        LmblSplgeMint(1, mintAmount);
-        if (LmblSplgeMintState.status === "success") {
-          toast.success("Success Minted");
+        if (mintAmount === 0) {
+          toast.warning("Please increase Amount");
+          return;
+        } else {
+          setIsOpen(true);
+          LmblSplgeMint(mintAmount, {
+            value: utils.parseEther(NFTprice[number].toString()),
+          });
+          if (LmblSplgeMintState.status === "Success") {
+            setIsOpen(false);
+            toast.success("Success Minted");
+          }
         }
       }
       if (number === 3) {
-        YledSplgeMint(1, mintAmount);
-        if (YledSplgeMintState.status === "success") {
-          toast.success("Success Minted");
+        if (mintAmount === 0) {
+          toast.warning("Please increase Amount");
+          return;
+        } else {
+          setIsOpen(true);
+          YledSplgeMint(mintAmount, {
+            value: utils.parseEther(NFTprice[number].toString()),
+          });
+          if (YledSplgeMintState.status === "Success") {
+            setIsOpen(false);
+            toast.success("Success Minted");
+          }
         }
       }
       if (number === 4) {
-        AypndSplgeMint(price, mintAmount);
-        if (AypndSplgeMintState.status === "success") {
-          toast.success("Success Minted");
+        if (mintAmount === 0) {
+          toast.warning("Please increase Amount");
+          return;
+        } else {
+          setIsOpen(true);
+          AypndSplgeMint(mintAmount, {
+            value: utils.parseEther(NFTprice[number].toString()),
+          });
+          if (AypndSplgeMintState.status === "Success") {
+            setIsOpen(false);
+            toast.success("Success Minted");
+          }
         }
       }
       if (number === 5) {
-        NwoSplgeMint(1, mintAmount);
-        if (NwoSplgeMintState.status === "success") {
-          toast.success("Success Minted");
+        if (mintAmount === 0) {
+          toast.warning("Please increase Amount");
+          return;
+        } else {
+          setIsOpen(true);
+          NwoSplgeMint(mintAmount, {
+            value: utils.parseEther(NFTprice[number].toString()),
+          });
+          if (NwoSplgeMintState.status === "Success") {
+            setIsOpen(false);
+            toast.success("Success Minted");
+          }
         }
       }
       temp[number] += mintAmount;
@@ -78,17 +150,21 @@ const Mint = ({ NFTImage, number, NFTCount, color, price }) => {
       toast.error("Please connect Wallet");
     }
   };
-  let totalCount = 1818 - total(temp);
-
-  useEffect(() => {
-    dispatch(setTotalCount(totalCount));
-  }, [dispatch, totalCount]);
 
   return (
     <div
       className="mt-[30px] w-[600px] border-4 border-solid rounded-[30px] mx-auto flex"
       style={{ borderColor: color }}
     >
+      <Modal isOpen={isOpen} style={customStyles}>
+        <RingLoader
+          color={"#36d7b7"}
+          loading={true}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </Modal>
       <div className="flex justify-center w-[50%]">
         <img src={NFTImage} alt="NFT" className="rounded-[27px]" />
       </div>
@@ -120,7 +196,7 @@ const Mint = ({ NFTImage, number, NFTCount, color, price }) => {
         </div>
         <div className="text-center mt-[20px]">
           <p className="font-bold mb-[10px] text-[white] text-[20px]">
-            {price === 0 ? "Free" : "$" + price}
+            {NFTprice ? ToValue(NFTprice[number]) : 0} ETH
           </p>
           <button
             className="bg-[blue] w-[100%] py-[10px] rounded-[15px] "

@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import { store } from "Store/store";
-import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
 import { Mainnet, DAppProvider } from "@usedapp/core";
 import { ToastContainer } from "react-toastify";
@@ -19,10 +17,8 @@ const config = {
 root.render(
   <React.StrictMode>
     <DAppProvider config={config}>
-      <Provider store={store}>
-        <App />
-        <ToastContainer />
-      </Provider>
+      <App />
+      <ToastContainer />
     </DAppProvider>
   </React.StrictMode>
 );

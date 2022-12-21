@@ -4,6 +4,9 @@ import useJrSplgeMint from "./useJrSplgeMint";
 import useLmblSplgeMint from "./useLmblSplgeMint";
 import useNwoSplgeMint from "./useNwoSplgeMint";
 import useYledSplgeMint from "./useYledSplgeMint";
+import useConfig from "./useConfig";
+import useTotalSplooge from "./useTotalSplooge";
+import useTotalSupply from "./useTotalSupply";
 
 export {
   useAypndSplgeMint,
@@ -12,4 +15,7 @@ export {
   useLmblSplgeMint,
   useNwoSplgeMint,
   useYledSplgeMint,
+  useConfig,
+  useTotalSplooge,
+  useTotalSupply,
 };
