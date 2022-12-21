@@ -37,7 +37,7 @@ const customStyles = {
   },
 };
 
-const Mint = ({ NFTImage, number, NFTCount, color }) => {
+const Mint = ({ NFTImage, number, color, nftCount }) => {
   const { account } = useEthers();
   const NFTprice = useConfig();
   const [isOpen, setIsOpen] = useState(false);
@@ -185,8 +185,8 @@ const Mint = ({ NFTImage, number, NFTCount, color }) => {
             className="bg-[yellow] rounded-full w-[40px] h-[40px]"
             onClick={() => {
               setMintAmount(
-                mintAmount + 1 > NFTCount - temp[number]
-                  ? NFTCount - temp[number]
+                mintAmount + 1 > nftCount - temp[number]
+                  ? nftCount - temp[number]
                   : mintAmount + 1
               );
             }}
@@ -207,7 +207,7 @@ const Mint = ({ NFTImage, number, NFTCount, color }) => {
         </div>
         <div className="text-center mt-[20px]">
           <p className="font-bold mb-[10px] text-[white] text-[20px]">
-            {temp[number]}/{NFTCount} Minted
+            {temp[number]}/{nftCount} Minted
           </p>
         </div>
       </div>

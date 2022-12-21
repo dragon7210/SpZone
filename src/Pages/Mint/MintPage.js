@@ -13,8 +13,8 @@ const MintPage = () => {
             key={index}
             number={index}
             NFTImage={ele.img}
-            NFTCount={ele.count}
             color={ele.color}
+            nftCount={ele.nftCount}
           />
         ))}
       </div>
