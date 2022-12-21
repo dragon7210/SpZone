@@ -5,7 +5,14 @@ import { toast } from "react-toastify";
 import Plus from "assets/img/plus.png";
 import Minus from "assets/img/minus.png";
 import { useEthers } from "@usedapp/core";
-import { useAypndSplgeMint } from "hooks";
+import {
+  useAypndSplgeMint,
+  useBaseSplgeMint,
+  useJrSplgeMint,
+  useLmblSplgeMint,
+  useNwoSplgeMint,
+  useYledSplgeMint,
+} from "hooks";
 
 let temp = [0, 0, 0, 0, 0, 0];
 
@@ -19,22 +26,53 @@ const Mint = ({ NFTImage, number, NFTCount, color, price }) => {
   const dispatch = useDispatch();
   const [mintAmount, setMintAmount] = useState(0);
 
+  const { state: AypndSplgeMintState, send: AypndSplgeMint } =
+    useAypndSplgeMint();
+  const { state: BaseSplgeMintState, send: BaseSplgeMint } = useBaseSplgeMint();
+  const { state: JrSplgeMintState, send: JrSplgeMint } = useJrSplgeMint();
+  const { state: LmblSplgeMintState, send: LmblSplgeMint } = useLmblSplgeMint();
+  const { state: NwoSplgeMintState, send: NwoSplgeMint } = useNwoSplgeMint();
+  const { state: YledSplgeMintState, send: YledSplgeMint } = useYledSplgeMint();
+
   const mint = () => {
     if (account) {
       if (number === 0) {
+        BaseSplgeMint(1, mintAmount);
+        if (BaseSplgeMintState.status === "success") {
+          toast.success("Success Minted");
+        }
       }
       if (number === 1) {
+        JrSplgeMint(1, mintAmount);
+        if (JrSplgeMintState.status === "success") {
+          toast.success("Success Minted");
+        }
       }
       if (number === 2) {
+        LmblSplgeMint(1, mintAmount);
+        if (LmblSplgeMintState.status === "success") {
+          toast.success("Success Minted");
+        }
       }
       if (number === 3) {
+        YledSplgeMint(1, mintAmount);
+        if (YledSplgeMintState.status === "success") {
+          toast.success("Success Minted");
+        }
       }
       if (number === 4) {
+        AypndSplgeMint(price, mintAmount);
+        if (AypndSplgeMintState.status === "success") {
+          toast.success("Success Minted");
+        }
       }
       if (number === 5) {
+        NwoSplgeMint(1, mintAmount);
+        if (NwoSplgeMintState.status === "success") {
+          toast.success("Success Minted");
+        }
       }
       temp[number] += mintAmount;
-      toast.success("Success Minted");
       setMintAmount(0);
     } else {
       toast.error("Please connect Wallet");

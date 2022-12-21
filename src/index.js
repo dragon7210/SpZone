@@ -4,15 +4,17 @@ import App from "./App";
 import { store } from "Store/store";
 import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
-import { DAppProvider } from "@usedapp/core";
+import { Mainnet, DAppProvider } from "@usedapp/core";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const config = {
-  readOnlyChainId: 1337,
-  multicallAddresses: {},
+  readOnlyChainId: Mainnet.chainId,
+  readOnlyUrls: {
+    [Mainnet.chainId]: `https://mainnet.infura.io/v3/${process.env.REACT_APP_INFURA_ID}`,
+  },
 };
 root.render(
   <React.StrictMode>
