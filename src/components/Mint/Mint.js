@@ -38,12 +38,11 @@ const customStyles = {
 };
 
 const Mint = ({ NFTImage, number, color, nftCount }) => {
-  const { account } = useEthers();
-  const NFTprice = useConfig();
   const [isOpen, setIsOpen] = useState(false);
-
   const [mintAmount, setMintAmount] = useState(0);
 
+  const { account } = useEthers();
+  const NFTprice = useConfig();
   const { state: BaseSplgeMintState, send: BaseSplgeMint } = useBaseSplgeMint();
   const { state: JrSplgeMintState, send: JrSplgeMint } = useJrSplgeMint();
   const { state: LmblSplgeMintState, send: LmblSplgeMint } = useLmblSplgeMint();
