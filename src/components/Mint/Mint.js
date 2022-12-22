@@ -6,6 +6,7 @@ import Minus from "assets/img/minus.png";
 import { useEtherBalance, useEthers } from "@usedapp/core";
 import Modal from "react-modal";
 import RingLoader from "react-spinners/RingLoader";
+import { letters } from "constant";
 
 import {
   useAypndSplgeMint,
@@ -67,7 +68,7 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
           }
           if (BaseSplgeMintState.status === "None") {
             setIsOpen(false);
-            toast.warning("Unsuccess Minted");
+            toast.error("Unsuccess Minted");
           }
         }
       }
@@ -86,7 +87,7 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
               toast.success("Success Minted");
             } else {
               setIsOpen(false);
-              toast.warning("Unsuccess Minted");
+              toast.error("Unsuccess Minted");
             }
           } else {
             toast.warning("Not enough Eth");
@@ -108,7 +109,7 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
               toast.success("Success Minted");
             } else {
               setIsOpen(false);
-              toast.warning("Unsuccess Minted");
+              toast.error("Unsuccess Minted");
             }
           } else {
             toast.warning("Not enough Eth");
@@ -130,7 +131,7 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
               toast.success("Success Minted");
             } else {
               setIsOpen(false);
-              toast.warning("Unsuccess Minted");
+              toast.error("Unsuccess Minted");
             }
           } else {
             toast.warning("Not enough Eth");
@@ -152,7 +153,7 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
               toast.success("Success Minted");
             } else {
               setIsOpen(false);
-              toast.warning("Unsuccess Minted");
+              toast.error("Unsuccess Minted");
             }
           } else {
             toast.warning("Not enough Eth");
@@ -174,7 +175,7 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
               toast.success("Success Minted");
             } else {
               setIsOpen(false);
-              toast.warning("Unsuccess Minted");
+              toast.error("Unsuccess Minted");
             }
           } else {
             toast.warning("Not enough Eth");
@@ -190,7 +191,7 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
 
   return (
     <div
-      className="mt-[30px] border-4 border-solid rounded-[30px] mx-auto md:flex max-w-[600px]"
+      className="mt-[30px] border-4 border-solid rounded-[30px] mx-auto md:flex max-w-[1000px]"
       style={{ borderColor: color }}
     >
       <Modal isOpen={isOpen} style={customStyles}>
@@ -246,6 +247,13 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
           <p className="font-bold mb-[10px] text-[white] text-[20px]">
             {temp[number]}/{nftCount} Minted
           </p>
+        </div>
+        <div>
+          {Array(number + 1)
+            .fill(1)
+            .map((number, i) => (
+              <p className="text-[yellow] mt-[5px] text-[14px]">{letters[i]}</p>
+            ))}
         </div>
       </div>
     </div>
