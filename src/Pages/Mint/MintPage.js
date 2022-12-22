@@ -27,7 +27,7 @@ const MintPage = () => {
         <p className="text-[30px] text-[yellow]">Total Raised: in USD</p>
         <p className="text-[30px] text-[yellow]">
           The amount of NFT left to mint out of&nbsp;
-          {totalSupply ? parseInt(totalSupply) : 0}
+          {totalSupply ? totalSplooge - parseInt(totalSupply) : 0}
         </p>
       </div>
     </div>

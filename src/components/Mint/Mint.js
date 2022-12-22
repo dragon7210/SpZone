@@ -3,7 +3,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import Plus from "assets/img/plus.png";
 import Minus from "assets/img/minus.png";
-import { useEthers } from "@usedapp/core";
+import { useEtherBalance, useEthers } from "@usedapp/core";
 import { utils } from "ethers";
 import Modal from "react-modal";
 import RingLoader from "react-spinners/RingLoader";
@@ -42,6 +42,7 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
   const [mintAmount, setMintAmount] = useState(0);
 
   const { account } = useEthers();
+  const balance = useEtherBalance(account);
   const NFTprice = useConfig();
   const { state: BaseSplgeMintState, send: BaseSplgeMint } = useBaseSplgeMint();
   const { state: JrSplgeMintState, send: JrSplgeMint } = useJrSplgeMint();
@@ -55,16 +56,19 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
     if (account && NFTprice) {
       if (number === 0) {
         if (mintAmount === 0) {
-          toast.warning("Please increase Amount");
           return;
         } else {
           setIsOpen(true);
           BaseSplgeMint(mintAmount, {
-            value: utils.parseEther(NFTprice[number].toString()),
+            value: NFTprice[number],
           });
           if (BaseSplgeMintState.status === "Success") {
             setIsOpen(false);
             toast.success("Success Minted");
+          }
+          if (BaseSplgeMintState.status === "None") {
+            setIsOpen(false);
+            toast.warning("Unsuccess Minted");
           }
         }
       }
@@ -73,13 +77,20 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
           toast.warning("Please increase Amount");
           return;
         } else {
-          setIsOpen(true);
-          JrSplgeMint(mintAmount, {
-            value: utils.parseEther(NFTprice[number].toString()),
-          });
-          if (JrSplgeMintState.status === "Success") {
-            setIsOpen(false);
-            toast.success("Success Minted");
+          if (balance > NFTprice[number] * mintAmount) {
+            setIsOpen(true);
+            JrSplgeMint(mintAmount, {
+              value: NFTprice[number],
+            });
+            if (JrSplgeMintState.status === "Success") {
+              setIsOpen(false);
+              toast.success("Success Minted");
+            } else {
+              setIsOpen(false);
+              toast.warning("Unsuccess Minted");
+            }
+          } else {
+            toast.warning("Not enough Eth");
           }
         }
       }
@@ -88,13 +99,20 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
           toast.warning("Please increase Amount");
           return;
         } else {
-          setIsOpen(true);
-          LmblSplgeMint(mintAmount, {
-            value: utils.parseEther(NFTprice[number].toString()),
-          });
-          if (LmblSplgeMintState.status === "Success") {
-            setIsOpen(false);
-            toast.success("Success Minted");
+          if (balance > NFTprice[number] * mintAmount) {
+            setIsOpen(true);
+            LmblSplgeMint(mintAmount, {
+              value: NFTprice[number],
+            });
+            if (LmblSplgeMintState.status === "Success") {
+              setIsOpen(false);
+              toast.success("Success Minted");
+            } else {
+              setIsOpen(false);
+              toast.warning("Unsuccess Minted");
+            }
+          } else {
+            toast.warning("Not enough Eth");
           }
         }
       }
@@ -103,13 +121,20 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
           toast.warning("Please increase Amount");
           return;
         } else {
-          setIsOpen(true);
-          YledSplgeMint(mintAmount, {
-            value: utils.parseEther(NFTprice[number].toString()),
-          });
-          if (YledSplgeMintState.status === "Success") {
-            setIsOpen(false);
-            toast.success("Success Minted");
+          if (balance > NFTprice[number] * mintAmount) {
+            setIsOpen(true);
+            YledSplgeMint(mintAmount, {
+              value: NFTprice[number],
+            });
+            if (YledSplgeMintState.status === "Success") {
+              setIsOpen(false);
+              toast.success("Success Minted");
+            } else {
+              setIsOpen(false);
+              toast.warning("Unsuccess Minted");
+            }
+          } else {
+            toast.warning("Not enough Eth");
           }
         }
       }
@@ -118,13 +143,20 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
           toast.warning("Please increase Amount");
           return;
         } else {
-          setIsOpen(true);
-          AypndSplgeMint(mintAmount, {
-            value: utils.parseEther(NFTprice[number].toString()),
-          });
-          if (AypndSplgeMintState.status === "Success") {
-            setIsOpen(false);
-            toast.success("Success Minted");
+          if (balance > NFTprice[number] * mintAmount) {
+            setIsOpen(true);
+            AypndSplgeMint(mintAmount, {
+              value: NFTprice[number],
+            });
+            if (AypndSplgeMintState.status === "Success") {
+              setIsOpen(false);
+              toast.success("Success Minted");
+            } else {
+              setIsOpen(false);
+              toast.warning("Unsuccess Minted");
+            }
+          } else {
+            toast.warning("Not enough Eth");
           }
         }
       }
@@ -133,13 +165,20 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
           toast.warning("Please increase Amount");
           return;
         } else {
-          setIsOpen(true);
-          NwoSplgeMint(mintAmount, {
-            value: utils.parseEther(NFTprice[number].toString()),
-          });
-          if (NwoSplgeMintState.status === "Success") {
-            setIsOpen(false);
-            toast.success("Success Minted");
+          if (balance > NFTprice[number] * mintAmount) {
+            setIsOpen(true);
+            NwoSplgeMint(mintAmount, {
+              value: NFTprice[number],
+            });
+            if (NwoSplgeMintState.status === "Success") {
+              setIsOpen(false);
+              toast.success("Success Minted");
+            } else {
+              setIsOpen(false);
+              toast.warning("Unsuccess Minted");
+            }
+          } else {
+            toast.warning("Not enough Eth");
           }
         }
       }
