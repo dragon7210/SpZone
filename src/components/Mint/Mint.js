@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import Plus from "assets/img/plus.png";
 import Minus from "assets/img/minus.png";
 import { useEtherBalance, useEthers } from "@usedapp/core";
-import { utils } from "ethers";
 import Modal from "react-modal";
 import RingLoader from "react-spinners/RingLoader";
 
