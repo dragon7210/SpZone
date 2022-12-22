@@ -153,7 +153,7 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
 
   return (
     <div
-      className="mt-[30px] w-[600px] border-4 border-solid rounded-[30px] mx-auto flex"
+      className="mt-[30px] border-4 border-solid rounded-[30px] mx-auto md:flex max-w-[600px]"
       style={{ borderColor: color }}
     >
       <Modal isOpen={isOpen} style={customStyles}>
@@ -165,10 +165,10 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
           data-testid="loader"
         />
       </Modal>
-      <div className="flex justify-center w-[50%]">
+      <div className="flex justify-center md:w-[100%]">
         <img src={NFTImage} alt="NFT" className="rounded-[27px]" />
       </div>
-      <div className="w-[50%] p-5 my-auto">
+      <div className="p-5 my-auto md:w-[100%]">
         <div className="flex justify-center">
           <button
             className="bg-[yellow] rounded-full w-[40px] h-[40px]"

@@ -19,7 +19,7 @@ const MintPage = () => {
         ))}
       </div>
 
-      <div className="text-center py-[30px]">
+      <div className="text-center py-[30px] px-[20px]">
         <p className="text-[30px] text-[yellow]">
           Total NFTS : {totalSplooge ? parseInt(totalSplooge) : 0}
         </p>

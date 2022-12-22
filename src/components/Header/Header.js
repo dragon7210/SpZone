@@ -1,7 +1,6 @@
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Web3Modal from "web3modal";
 import { useEthers, shortenAddress } from "@usedapp/core";
-import { toast } from "react-toastify";
 
 const Header = () => {
   const { account, activate, deactivate } = useEthers();
@@ -46,17 +45,19 @@ const Header = () => {
 
   return (
     <div className="bg-[black] py-[25px] relative">
-      <p className="text-[#dab420] text-center">Ready to Splooge?</p>
+      <p className="text-[#dab420] px-10 sm:px-0 sm:text-center text-[larger]">
+        Ready to Splooge?
+      </p>
       {account ? (
         <button
-          className="bg-[blue] px-[20px] py-[5px]  rounded-lg absolute right-10 top-[20px]"
+          className="bg-[blue] px-[20px] py-[5px]  rounded-lg absolute right-3 top-[23px]"
           onClick={disconnect}
         >
           <span className="text-[yellow]">{shortenAddress(account)}</span>
         </button>
       ) : (
         <button
-          className="bg-[blue] px-[20px] py-[5px]  rounded-lg absolute right-10 top-[20px]"
+          className="bg-[blue] px-[20px] py-[5px]  rounded-lg absolute right-3 top-[23px]"
           onClick={handleConnect}
         >
           <span className="text-[yellow]">Connect</span>
