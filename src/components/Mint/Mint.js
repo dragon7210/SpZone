@@ -204,7 +204,7 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
         />
       </Modal>
       <div className="flex justify-center md:w-[100%]">
-        <img src={NFTImage} alt="NFT" className="rounded-l-lg-[27px]" />
+        <img src={NFTImage} alt="NFT" className="rounded-l-[27px]" />
       </div>
       <div className="p-5 my-auto md:w-[100%]">
         <div className="flex justify-center">
