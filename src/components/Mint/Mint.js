@@ -249,11 +249,18 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
           </p>
         </div>
         <div>
-          {Array(number + 1)
+          {/* {Array(number + 1)
             .fill(1)
-            .map((number, i) => (
-              <p className="text-[yellow] mt-[5px] text-[14px]">{letters[i]}</p>
-            ))}
+            .map((number, i) => ( */}
+          {number !== 0 && (
+            <p className="text-[yellow] mt-[5px text-[16px]">
+              Includes everything from the previous tier
+            </p>
+          )}
+          <p className="text-[yellow] mt-[5px] text-[16px]">
+            {letters[number]}
+          </p>
+          {/* ))} */}
         </div>
       </div>
     </div>
