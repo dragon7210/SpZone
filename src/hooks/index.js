@@ -13,6 +13,12 @@ import useJrSplge from "./useJrSplge";
 import useLmblSplge from "./useLMNLSplge";
 import useNwoSplge from "./useNWOSplge";
 import useYledplge from "./useYledSplge";
+import useAypndsplgwallet from "./useAypndsplgwallet";
+import useBssplgwallet from "./useBssplgwallet";
+import useJrsplgwallet from "./useJrsplgwallet";
+import useLmblsplgwallet from "./useLmblsplgwallet";
+import useNwosplgwallet from "./useNwosplgwallet";
+import useYledsplgwallet from "./useYledsplgwallet";
 
 export {
   useAypndSplgeMint,
@@ -30,4 +36,10 @@ export {
   useLmblSplge,
   useNwoSplge,
   useYledplge,
+  useBssplgwallet,
+  useAypndsplgwallet,
+  useJrsplgwallet,
+  useLmblsplgwallet,
+  useNwosplgwallet,
+  useYledsplgwallet,
 };

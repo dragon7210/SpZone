@@ -16,9 +16,13 @@ import {
   useLmblSplgeMint,
   useNwoSplgeMint,
   useYledSplgeMint,
+  useAypndsplgwallet,
+  useBssplgwallet,
+  useJrsplgwallet,
+  useLmblsplgwallet,
+  useNwosplgwallet,
+  useYledsplgwallet,
 } from "hooks";
-
-let temp = [0, 0, 0, 0, 0, 0];
 
 function ToValue(number) {
   return number / 10 ** 18;
@@ -44,6 +48,21 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
   const { account } = useEthers();
   const balance = useEtherBalance(account);
   const NFTprice = useConfig();
+  const Count1 = useBssplgwallet();
+  const Count2 = useJrsplgwallet();
+  const Count3 = useLmblsplgwallet();
+  const Count4 = useYledsplgwallet();
+  const Count5 = useAypndsplgwallet();
+  const Count6 = useNwosplgwallet();
+  const temp = [
+    parseInt(Count1),
+    parseInt(Count2),
+    parseInt(Count3),
+    parseInt(Count4),
+    parseInt(Count5),
+    parseInt(Count6),
+  ];
+
   const { state: BaseSplgeMintState, send: BaseSplgeMint } = useBaseSplgeMint();
   const { state: JrSplgeMintState, send: JrSplgeMint } = useJrSplgeMint();
   const { state: LmblSplgeMintState, send: LmblSplgeMint } = useLmblSplgeMint();
@@ -182,7 +201,6 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
           }
         }
       }
-      temp[number] += mintAmount;
       setMintAmount(0);
     } else {
       toast.error("Please connect Wallet");
@@ -249,13 +267,10 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
         </div>
         <div className="text-center mt-[20px]">
           <p className="font-bold mb-[10px] text-[white] text-[20px]">
-            {temp[number]}/{nftCount} Minted
+            {temp[number] ? temp[number] : 0}/{nftCount} Minted
           </p>
         </div>
         <div>
-          {/* {Array(number + 1)
-            .fill(1)
-            .map((number, i) => ( */}
           {number !== 0 && (
             <p className="text-[yellow] mt-[5px text-[16px]">
               Includes everything from the previous tier
@@ -264,7 +279,6 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
           <p className="text-[yellow] mt-[5px] text-[16px]">
             {letters[number]}
           </p>
-          {/* ))} */}
         </div>
       </div>
     </div>
