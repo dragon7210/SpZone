@@ -246,7 +246,7 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
             onClick={() => {
               setMintAmount(
                 mintAmount + 1 > nftCount - temp[number]
-                  ? nftCount - temp[number]
+                  ? temp[number]
                   : mintAmount + 1
               );
             }}
@@ -267,7 +267,7 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
         </div>
         <div className="text-center mt-[20px]">
           <p className="font-bold mb-[10px] text-[white] text-[20px]">
-            {temp[number] ? temp[number] : 0}/{nftCount} Minted
+            {temp[number] ? nftCount - temp[number] : 0}/{nftCount} Minted
           </p>
         </div>
         <div>
