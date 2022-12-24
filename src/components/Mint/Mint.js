@@ -22,6 +22,12 @@ import {
   useLmblsplgwallet,
   useNwosplgwallet,
   useYledsplgwallet,
+  useAypndSplge,
+  useBaseSplge,
+  useJrSplge,
+  useLmblSplge,
+  useNwoSplge,
+  useYledplge,
 } from "hooks";
 
 function ToValue(number) {
@@ -41,26 +47,43 @@ const customStyles = {
   },
 };
 
-const Mint = ({ NFTImage, number, color, nftCount }) => {
+const Mint = ({ NFTImage, number, color }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [mintAmount, setMintAmount] = useState(0);
 
   const { account } = useEthers();
   const balance = useEtherBalance(account);
   const NFTprice = useConfig();
-  const Count1 = useBssplgwallet();
-  const Count2 = useJrsplgwallet();
-  const Count3 = useLmblsplgwallet();
-  const Count4 = useYledsplgwallet();
-  const Count5 = useAypndsplgwallet();
-  const Count6 = useNwosplgwallet();
-  const temp = [
-    parseInt(Count1),
-    parseInt(Count2),
-    parseInt(Count3),
-    parseInt(Count4),
-    parseInt(Count5),
-    parseInt(Count6),
+  const remainCount1 = useBssplgwallet();
+  const remainCount2 = useJrsplgwallet();
+  const remainCount3 = useLmblsplgwallet();
+  const remainCount4 = useYledsplgwallet();
+  const remainCount5 = useAypndsplgwallet();
+  const remainCount6 = useNwosplgwallet();
+
+  const remainCount = [
+    parseInt(remainCount1),
+    parseInt(remainCount2),
+    parseInt(remainCount3),
+    parseInt(remainCount4),
+    parseInt(remainCount5),
+    parseInt(remainCount6),
+  ];
+
+  const count1 = useBaseSplge();
+  const count2 = useJrSplge();
+  const count3 = useLmblSplge();
+  const count4 = useYledplge();
+  const count5 = useAypndSplge();
+  const count6 = useNwoSplge();
+
+  const count = [
+    parseInt(count1),
+    parseInt(count2),
+    parseInt(count3),
+    parseInt(count4),
+    parseInt(count5),
+    parseInt(count6),
   ];
 
   const { state: BaseSplgeMintState, send: BaseSplgeMint } = useBaseSplgeMint();
@@ -85,10 +108,10 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
             setIsOpen(false);
             toast.success("Success Minted");
           }
-          if (BaseSplgeMintState.status === "None") {
-            setIsOpen(false);
-            toast.error("Unsuccess Minted");
-          }
+          // if (BaseSplgeMintState.status === "None") {
+          //   setIsOpen(false);
+          //   toast.error("Unsuccess Minted");
+          // }
         }
       }
       if (number === 1) {
@@ -104,10 +127,11 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
             if (JrSplgeMintState.status === "Success") {
               setIsOpen(false);
               toast.success("Success Minted");
-            } else {
-              setIsOpen(false);
-              toast.error("Unsuccess Minted");
             }
+            // if (JrSplgeMintState.status === "Success") {
+            //   setIsOpen(false);
+            //   toast.error("Unsuccess Minted");
+            // }
           } else {
             toast.warning("Not enough Eth");
           }
@@ -126,10 +150,11 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
             if (LmblSplgeMintState.status === "Success") {
               setIsOpen(false);
               toast.success("Success Minted");
-            } else {
-              setIsOpen(false);
-              toast.error("Unsuccess Minted");
             }
+            // if (LmblSplgeMintState.status === "Success") {
+            //   setIsOpen(false);
+            //   toast.error("Unsuccess Minted");
+            // }
           } else {
             toast.warning("Not enough Eth");
           }
@@ -148,10 +173,11 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
             if (YledSplgeMintState.status === "Success") {
               setIsOpen(false);
               toast.success("Success Minted");
-            } else {
-              setIsOpen(false);
-              toast.error("Unsuccess Minted");
             }
+            // if (YledSplgeMintState.status === "Success") {
+            //   setIsOpen(false);
+            //   toast.error("Unsuccess Minted");
+            // }
           } else {
             toast.warning("Not enough Eth");
           }
@@ -170,10 +196,11 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
             if (AypndSplgeMintState.status === "Success") {
               setIsOpen(false);
               toast.success("Success Minted");
-            } else {
-              setIsOpen(false);
-              toast.error("Unsuccess Minted");
             }
+            // if (AypndSplgeMintState.status === "Success") {
+            //   setIsOpen(false);
+            //   toast.error("Unsuccess Minted");
+            // }
           } else {
             toast.warning("Not enough Eth");
           }
@@ -192,10 +219,11 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
             if (NwoSplgeMintState.status === "Success") {
               setIsOpen(false);
               toast.success("Success Minted");
-            } else {
-              setIsOpen(false);
-              toast.error("Unsuccess Minted");
             }
+            // if (NwoSplgeMintState.status === "Success") {
+            //   setIsOpen(false);
+            //   toast.error("Unsuccess Minted");
+            // }
           } else {
             toast.warning("Not enough Eth");
           }
@@ -245,8 +273,8 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
             className="bg-[yellow] rounded-full w-[40px] h-[40px]"
             onClick={() => {
               setMintAmount(
-                mintAmount + 1 > nftCount - temp[number]
-                  ? temp[number]
+                mintAmount + 1 > count[number] - remainCount[number]
+                  ? remainCount[number]
                   : mintAmount + 1
               );
             }}
@@ -267,7 +295,8 @@ const Mint = ({ NFTImage, number, color, nftCount }) => {
         </div>
         <div className="text-center mt-[20px]">
           <p className="font-bold mb-[10px] text-[white] text-[20px]">
-            {temp[number] ? nftCount - temp[number] : 0}/{nftCount} Minted
+            {remainCount[number] ? count[number] - remainCount[number] : 0}/
+            {count[number] ? count[number] : 0} Minted
           </p>
         </div>
         <div>

@@ -1,9 +1,6 @@
 import Mint from "components/Mint";
 import { NFTData } from "constant";
-import {
-  useTotalSplooge,
-  useTotalSupply,
-} from "hooks";
+import { useTotalSplooge, useTotalSupply } from "hooks";
 
 const MintPage = () => {
   const totalSplooge = useTotalSplooge();
@@ -17,7 +14,6 @@ const MintPage = () => {
             number={index}
             NFTImage={ele.img}
             color={ele.color}
-            nftCount={ele.nftCount}
           />
         ))}
       </div>
