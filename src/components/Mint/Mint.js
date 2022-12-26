@@ -104,14 +104,10 @@ const Mint = ({ NFTImage, number, color }) => {
           BaseSplgeMint(mintAmount, {
             value: NFTprice[number],
           });
-          if (BaseSplgeMintState.status === "Success") {
-            setIsOpen(false);
-            toast.success("Success Minted");
-          }
-          // if (BaseSplgeMintState.status === "None") {
-          //   setIsOpen(false);
-          //   toast.error("Unsuccess Minted");
-          // }
+          BaseSplgeMintState.status === "Exception" &&
+            toast.error(BaseSplgeMintState.errorMessage);
+          BaseSplgeMintState.status === "Success" &&
+            toast.info("Mint success!");
         }
       }
       if (number === 1) {
@@ -124,14 +120,10 @@ const Mint = ({ NFTImage, number, color }) => {
             JrSplgeMint(mintAmount, {
               value: NFTprice[number],
             });
-            if (JrSplgeMintState.status === "Success") {
-              setIsOpen(false);
-              toast.success("Success Minted");
-            }
-            // if (JrSplgeMintState.status === "Success") {
-            //   setIsOpen(false);
-            //   toast.error("Unsuccess Minted");
-            // }
+            JrSplgeMintState.status === "Exception" &&
+              toast.error(JrSplgeMintState.errorMessage);
+            JrSplgeMintState.status === "Success" &&
+              toast.info("Mint success!");
           } else {
             toast.warning("Not enough Eth");
           }
@@ -147,14 +139,10 @@ const Mint = ({ NFTImage, number, color }) => {
             LmblSplgeMint(mintAmount, {
               value: NFTprice[number],
             });
-            if (LmblSplgeMintState.status === "Success") {
-              setIsOpen(false);
-              toast.success("Success Minted");
-            }
-            // if (LmblSplgeMintState.status === "Success") {
-            //   setIsOpen(false);
-            //   toast.error("Unsuccess Minted");
-            // }
+            LmblSplgeMintState.status === "Exception" &&
+              toast.error(LmblSplgeMintState.errorMessage);
+            LmblSplgeMintState.status === "Success" &&
+              toast.info("Mint success!");
           } else {
             toast.warning("Not enough Eth");
           }
@@ -170,14 +158,10 @@ const Mint = ({ NFTImage, number, color }) => {
             YledSplgeMint(mintAmount, {
               value: NFTprice[number],
             });
-            if (YledSplgeMintState.status === "Success") {
-              setIsOpen(false);
-              toast.success("Success Minted");
-            }
-            // if (YledSplgeMintState.status === "Success") {
-            //   setIsOpen(false);
-            //   toast.error("Unsuccess Minted");
-            // }
+            YledSplgeMintState.status === "Exception" &&
+              toast.error(YledSplgeMintState.errorMessage);
+            YledSplgeMintState.status === "Success" &&
+              toast.info("Mint success!");
           } else {
             toast.warning("Not enough Eth");
           }
@@ -193,14 +177,10 @@ const Mint = ({ NFTImage, number, color }) => {
             AypndSplgeMint(mintAmount, {
               value: NFTprice[number],
             });
-            if (AypndSplgeMintState.status === "Success") {
-              setIsOpen(false);
-              toast.success("Success Minted");
-            }
-            // if (AypndSplgeMintState.status === "Success") {
-            //   setIsOpen(false);
-            //   toast.error("Unsuccess Minted");
-            // }
+            AypndSplgeMintState.status === "Exception" &&
+              toast.error(AypndSplgeMintState.errorMessage);
+            AypndSplgeMintState.status === "Success" &&
+              toast.info("Mint success!");
           } else {
             toast.warning("Not enough Eth");
           }
@@ -216,14 +196,10 @@ const Mint = ({ NFTImage, number, color }) => {
             NwoSplgeMint(mintAmount, {
               value: NFTprice[number],
             });
-            if (NwoSplgeMintState.status === "Success") {
-              setIsOpen(false);
-              toast.success("Success Minted");
-            }
-            // if (NwoSplgeMintState.status === "Success") {
-            //   setIsOpen(false);
-            //   toast.error("Unsuccess Minted");
-            // }
+            NwoSplgeMintState.status === "Exception" &&
+              toast.error(NwoSplgeMintState.errorMessage);
+            NwoSplgeMintState.status === "Success" &&
+              toast.info("Mint success!");
           } else {
             toast.warning("Not enough Eth");
           }
