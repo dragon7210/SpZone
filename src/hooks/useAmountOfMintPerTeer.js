@@ -1,12 +1,12 @@
 import { useCall } from "@usedapp/core";
 import { SploogeContract } from "./config";
 
-export default function useBssplgwallet() {
+export default function useAmountOfMintPerTeer(mintPerteer) {
   const { value, error } =
     useCall({
       contract: SploogeContract,
-      method: "bssplgwallet",
-      args: [],
+      method: "amountOfMintPerTeer",
+      args: [mintPerteer],
     }) ?? {};
   if (error) {
     console.error(error.message);

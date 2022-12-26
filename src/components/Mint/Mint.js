@@ -16,18 +16,13 @@ import {
   useLmblSplgeMint,
   useNwoSplgeMint,
   useYledSplgeMint,
-  useAypndsplgwallet,
-  useBssplgwallet,
-  useJrsplgwallet,
-  useLmblsplgwallet,
-  useNwosplgwallet,
-  useYledsplgwallet,
   useAypndSplge,
   useBaseSplge,
   useJrSplge,
   useLmblSplge,
   useNwoSplge,
   useYledplge,
+  useAmountOfMintPerTeer,
 } from "hooks";
 
 function ToValue(number) {
@@ -51,24 +46,11 @@ const Mint = ({ NFTImage, number, color }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [mintAmount, setMintAmount] = useState(0);
 
+  const value = useAmountOfMintPerTeer(number);
+
   const { account } = useEthers();
   const balance = useEtherBalance(account);
   const NFTprice = useConfig();
-  const remainCount1 = useBssplgwallet();
-  const remainCount2 = useJrsplgwallet();
-  const remainCount3 = useLmblsplgwallet();
-  const remainCount4 = useYledsplgwallet();
-  const remainCount5 = useAypndsplgwallet();
-  const remainCount6 = useNwosplgwallet();
-
-  const remainCount = [
-    parseInt(remainCount1),
-    parseInt(remainCount2),
-    parseInt(remainCount3),
-    parseInt(remainCount4),
-    parseInt(remainCount5),
-    parseInt(remainCount6),
-  ];
 
   const count1 = useBaseSplge();
   const count2 = useJrSplge();
@@ -93,7 +75,6 @@ const Mint = ({ NFTImage, number, color }) => {
   const { state: AypndSplgeMintState, send: AypndSplgeMint } =
     useAypndSplgeMint();
   const { state: NwoSplgeMintState, send: NwoSplgeMint } = useNwoSplgeMint();
-
   const mint = () => {
     if (account && NFTprice) {
       if (number === 0) {
@@ -104,10 +85,10 @@ const Mint = ({ NFTImage, number, color }) => {
           BaseSplgeMint(mintAmount, {
             value: NFTprice[number],
           });
-          BaseSplgeMintState.status === "Exception" &&
-            toast.error(BaseSplgeMintState.errorMessage);
-          BaseSplgeMintState.status === "Success" &&
+          if (BaseSplgeMintState.status === "Success") {
             toast.info("Mint success!");
+            setIsOpen(false);
+          }
         }
       }
       if (number === 1) {
@@ -120,10 +101,10 @@ const Mint = ({ NFTImage, number, color }) => {
             JrSplgeMint(mintAmount, {
               value: NFTprice[number],
             });
-            JrSplgeMintState.status === "Exception" &&
-              toast.error(JrSplgeMintState.errorMessage);
-            JrSplgeMintState.status === "Success" &&
+            if (JrSplgeMintState.status === "Success") {
               toast.info("Mint success!");
+              setIsOpen(false);
+            }
           } else {
             toast.warning("Not enough Eth");
           }
@@ -139,10 +120,10 @@ const Mint = ({ NFTImage, number, color }) => {
             LmblSplgeMint(mintAmount, {
               value: NFTprice[number],
             });
-            LmblSplgeMintState.status === "Exception" &&
-              toast.error(LmblSplgeMintState.errorMessage);
-            LmblSplgeMintState.status === "Success" &&
+            if (LmblSplgeMintState.status === "Success") {
               toast.info("Mint success!");
+              setIsOpen(false);
+            }
           } else {
             toast.warning("Not enough Eth");
           }
@@ -158,10 +139,10 @@ const Mint = ({ NFTImage, number, color }) => {
             YledSplgeMint(mintAmount, {
               value: NFTprice[number],
             });
-            YledSplgeMintState.status === "Exception" &&
-              toast.error(YledSplgeMintState.errorMessage);
-            YledSplgeMintState.status === "Success" &&
+            if (YledSplgeMintState.status === "Success") {
               toast.info("Mint success!");
+              setIsOpen(false);
+            }
           } else {
             toast.warning("Not enough Eth");
           }
@@ -177,10 +158,10 @@ const Mint = ({ NFTImage, number, color }) => {
             AypndSplgeMint(mintAmount, {
               value: NFTprice[number],
             });
-            AypndSplgeMintState.status === "Exception" &&
-              toast.error(AypndSplgeMintState.errorMessage);
-            AypndSplgeMintState.status === "Success" &&
+            if (AypndSplgeMintState.status === "Success") {
               toast.info("Mint success!");
+              setIsOpen(false);
+            }
           } else {
             toast.warning("Not enough Eth");
           }
@@ -196,10 +177,10 @@ const Mint = ({ NFTImage, number, color }) => {
             NwoSplgeMint(mintAmount, {
               value: NFTprice[number],
             });
-            NwoSplgeMintState.status === "Exception" &&
-              toast.error(NwoSplgeMintState.errorMessage);
-            NwoSplgeMintState.status === "Success" &&
+            if (NwoSplgeMintState.status === "Success") {
               toast.info("Mint success!");
+              setIsOpen(false);
+            }
           } else {
             toast.warning("Not enough Eth");
           }
@@ -249,8 +230,8 @@ const Mint = ({ NFTImage, number, color }) => {
             className="bg-[yellow] rounded-full w-[40px] h-[40px]"
             onClick={() => {
               setMintAmount(
-                mintAmount + 1 > count[number] - remainCount[number]
-                  ? remainCount[number]
+                mintAmount + 1 > count[number] - parseInt(value)
+                  ? parseInt(value)
                   : mintAmount + 1
               );
             }}
@@ -271,7 +252,7 @@ const Mint = ({ NFTImage, number, color }) => {
         </div>
         <div className="text-center mt-[20px]">
           <p className="font-bold mb-[10px] text-[white] text-[20px]">
-            {remainCount[number] ? count[number] - remainCount[number] : 0}/
+            {parseInt(value) ? parseInt(value) : 0}/
             {count[number] ? count[number] : 0} Minted
           </p>
         </div>

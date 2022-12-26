@@ -1,2 +1,2 @@
 export const SploogeZoneContractAddress =
-  "0xc6A5eb933d9f86c1C0e4C39352C154A9cf8efEB8";
+  "0x031F35D2E11ebD54817dDA2937426e9AbcdFE0D0";
