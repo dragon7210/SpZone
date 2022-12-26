@@ -188,8 +188,29 @@ const Mint = ({ NFTImage, number, color }) => {
       }
       setMintAmount(0);
     } else {
-      toast.error("Please connect Wallet");
+      accountError();
     }
+  };
+  const plusMint = () => {
+    if (mintAmount + 1 > count[number] - parseInt(value)) {
+      toast.warning("Max Count");
+      setMintAmount(count[number] - parseInt(value));
+    } else {
+      setMintAmount(mintAmount + 1);
+    }
+  };
+
+  const minusMint = () => {
+    if (mintAmount > 0) {
+      setMintAmount(mintAmount - 1);
+    } else {
+      toast.warning("Min Count");
+      setMintAmount(mintAmount);
+    }
+  };
+
+  const accountError = () => {
+    toast.error("Please connect Wallet");
   };
 
   return (
@@ -217,9 +238,7 @@ const Mint = ({ NFTImage, number, color }) => {
         <div className="flex justify-center">
           <button
             className="bg-[yellow] rounded-full w-[40px] h-[40px]"
-            onClick={() => {
-              setMintAmount(mintAmount > 0 ? mintAmount - 1 : mintAmount);
-            }}
+            onClick={account ? minusMint : accountError}
           >
             <img src={Minus} alt="minus" />
           </button>
@@ -228,13 +247,7 @@ const Mint = ({ NFTImage, number, color }) => {
           </p>
           <button
             className="bg-[yellow] rounded-full w-[40px] h-[40px]"
-            onClick={() => {
-              setMintAmount(
-                mintAmount + 1 > count[number] - parseInt(value)
-                  ? parseInt(value)
-                  : mintAmount + 1
-              );
-            }}
+            onClick={account ? plusMint : accountError}
           >
             <img src={Plus} alt="Plus" />
           </button>
