@@ -1,3 +1,4 @@
+import Footer from "components/Footer";
 import Header from "components/Header";
 import MintPage from "Pages/Mint/MintPage";
 import "./App.css";
@@ -7,6 +8,7 @@ function App() {
     <div className="App">
       <Header />
       <MintPage />
+      <Footer />
     </div>
   );
 }
