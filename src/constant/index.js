@@ -12,7 +12,7 @@ export const NFTData = [
     color: "#FFFFFF",
   },
   {
-    img: "img/3.png",
+    img: "img/4.png",
     color: "#CD7F32",
   },
   {
